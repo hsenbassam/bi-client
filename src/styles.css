@@ -1,12 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
 @import '~bootstrap/dist/css/bootstrap.css';
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #f8f9fa !important;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
 
 .full-width {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
-  
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

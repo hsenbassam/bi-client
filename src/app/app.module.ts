@@ -14,8 +14,7 @@ import { EmployeesComponent } from './employees/employees.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
-    EmployeesComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
