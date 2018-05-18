@@ -36,3 +36,9 @@ legend.scheduler-border {
 .info {
   margin-top: 20px
 }
+
+.error {
+  margin-left:15px;
+  color:#e74c3c;
+  font-style: italic
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
 export class EmployeeFormComponent implements OnInit {
 
   form;
+  maxDate = new Date();
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder, private datePipe: DatePipe) {
     this.form = fb.group({
       info: fb.group({
         name: ['', Validators.required],
-        dob: [],
+        dob: [new Date()],
         salary: ['', Validators.min(0)]
       }),
       benefits: fb.group({
@@ -54,6 +56,11 @@ export class EmployeeFormComponent implements OnInit {
     return this.form.get('benefits.data');
   }
   save() {
-    console.log(this.form.value);
+    this.form.value.info.dob = this.datePipe.transform(this.form.value.info.dob, 'yyyy-MM-dd');
+    if (this.form.valid) {
+      console.log(this.form.value);
+    } else {
+      console.log('Fail');
+    }
   }
 }

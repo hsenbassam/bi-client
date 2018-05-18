@@ -6,6 +6,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -19,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     declarations: [
         EmployeesComponent,
         EmployeeFormComponent,
-        EmployeeListComponent
+        EmployeeListComponent,
+    ],
+    providers: [
+        DatePipe
     ],
     exports: [
         EmployeesComponent,

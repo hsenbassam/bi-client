@@ -8,26 +8,35 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Name</span>
               </div>
-              <input type="text" class="form-control col-lg-8" formControlName="name">
+              <input type="text" class="form-control col-lg-8" formControlName="name" [ngClass]="{'is-invalid': !name.valid && name.touched}">
             </div>
             <small *ngIf="name.touched && name.invalid" class="text-danger">
               Valid name is required.
             </small>
           </div>
           <div class="mb-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Date Of Birth</span>
+            <div class="row">
+              <div class="input-group col-md-8">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Date Of Birth</span>
+                </div>
+                <input type="text" placeholder="Datepicker" class="form-control" formControlName="dob" bsDatepicker #dp="bsDatepicker"
+                  [maxDate]="maxDate" [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD'}">
               </div>
-              <input type="text" placeholder="Datepicker" class="form-control col-lg-7" formControlName="dob" bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD'}">
+              <div class="col-md-4">
+                <button class="btn btn-default" type="button" (click)="dp.toggle()">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
             </div>
           </div>
+
           <div class="mb-4">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Salary</span>
               </div>
-              <input formControlName="salary" type="number" class="form-control col-lg-8">
+              <input formControlName="salary" type="number" class="form-control col-lg-8" [ngClass]="{'is-invalid': !salary.valid && salary.touched}">
             </div>
             <small *ngIf="salary.touched && salary.invalid" class="text-danger">
               Salary should be greater than 0.
@@ -53,6 +62,6 @@
   </div>
   <div class="row float-right buttons">
     <button type="button" class="btn btn-info homebtn" routerLink="/">Home</button>
-    <button class="btn btn-success savebtn" type="submit">Save</button>
+    <button class="btn btn-success savebtn" type="submit" [disabled]="!form.valid">Save</button>
   </div>
 </form>
