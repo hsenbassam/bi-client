@@ -1,3 +1,5 @@
+import { EmployeeService } from './_services/employee.service';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -10,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { FooterComponent } from './footer/footer.component';
 import { CollapseModule } from 'ngx-bootstrap';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -21,10 +24,12 @@ import { CollapseModule } from 'ngx-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     CollapseModule.forRoot()
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

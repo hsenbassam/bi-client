@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
 
 export class DataService {
 
@@ -18,22 +16,22 @@ export class DataService {
 
     getAll() {
         return this.http.get(this.url, this.options)
-            .map(response => !response.json().errorCode ? response.json() : null);
+            .map(response =>  response.json());
     }
 
     get(key) {
         return this.http.get(this.url + '/' + key, this.options)
-            .map(response => !response.json().errorCode ? response.json() : null);
+            .map(response =>  response.json());
     }
 
     post(resource) {
         return this.http.post(this.url, resource, this.options)
-            .map(response => !response.json().errorCode ? response.json() : null);
+            .map(response =>  response.json());
     }
 
     update(resource) {
         return this.http.put(this.url + '/' + resource.id, resource, this.options)
-            .map(response => !response.json().errorCode ? response.json() : null);
+            .map(response =>  response.json());
     }
 
     delete(id) {

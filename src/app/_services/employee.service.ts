@@ -7,6 +7,6 @@ import { SERVER } from '../_shared/constants';
 @Injectable()
 export class EmployeeService extends DataService {
     constructor(http: Http) {
-        super(SERVER + 'api/employees', http);
+        super(SERVER + 'api/Employee', http);
     }
 }

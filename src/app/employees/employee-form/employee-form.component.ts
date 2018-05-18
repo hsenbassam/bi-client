@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { EmployeeService } from '../../_services/employee.service';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -9,10 +10,16 @@ import { DatePipe } from '@angular/common';
 })
 export class EmployeeFormComponent implements OnInit {
 
-  form;
+  form; url;
   maxDate = new Date();
 
-  constructor(private router: Router, private fb: FormBuilder, private datePipe: DatePipe) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+    private _router: Router,
+    private employeeService: EmployeeService) {
+    this.url = _router.url;
     this.form = fb.group({
       info: fb.group({
         name: ['', Validators.required],
@@ -58,7 +65,9 @@ export class EmployeeFormComponent implements OnInit {
   save() {
     this.form.value.info.dob = this.datePipe.transform(this.form.value.info.dob, 'yyyy-MM-dd');
     if (this.form.valid) {
-      console.log(this.form.value);
+      if (this.url.includes('/add')) {
+        console.log(this.form.value);
+      }
     } else {
       console.log('The Form is Invalid');
     }
