@@ -60,7 +60,7 @@ export class EmployeeFormComponent implements OnInit {
     if (this.form.valid) {
       console.log(this.form.value);
     } else {
-      console.log('Fail');
+      console.log('The Form is Invalid');
     }
   }
 }
