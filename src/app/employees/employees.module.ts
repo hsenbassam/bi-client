@@ -1,3 +1,4 @@
+import { MatButtonModule, MatPaginatorModule, MatSortModule, MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesRoutingModule } from './employee-routing.module';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,12 @@ import { DatePipe } from '@angular/common';
     imports: [
         CommonModule,
         EmployeesRoutingModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
         FormsModule,
         ReactiveFormsModule,
         BsDatepickerModule.forRoot()
