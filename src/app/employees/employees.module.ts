@@ -16,12 +16,12 @@ import { DatePipe } from '@angular/common';
         EmployeesRoutingModule,
         MatButtonModule,
         MatPaginatorModule,
-        MatSortModule,
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
         FormsModule,
         ReactiveFormsModule,
+        MatSortModule,
         BsDatepickerModule.forRoot()
     ],
     declarations: [

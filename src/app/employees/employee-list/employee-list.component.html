@@ -7,45 +7,44 @@
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
-    <!-- User Id Column -->
+    <!-- # Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
       <mat-cell *matCellDef="let index = index"> {{index + 1}} </mat-cell>
     </ng-container>
-    <!-- Type Column -->
+    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let employee"> {{employee.Name}} </mat-cell>
     </ng-container>
 
-    <!-- Coverage Column -->
+    <!-- DOB Column -->
     <ng-container matColumnDef="dob">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth </mat-header-cell>
       <mat-cell *matCellDef="let employee"> {{employee.DOB | date}} </mat-cell>
     </ng-container>
 
+    <!-- Salary Column -->
     <ng-container matColumnDef="salary">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Salary </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.Salary | currency:'USD':true}} </mat-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.Salary | currency:'USD':symbol}} </mat-cell>
     </ng-container>
 
-
-  
     <!-- Edit Column -->
     <ng-container matColumnDef="edit">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let employee">
-          <a [routerLink]="['/employees/', employee.EmployeeId]">Edit</a>
+        <a [routerLink]="['/employees/', employee.EmployeeId]">Edit</a>
       </mat-cell>
     </ng-container>
 
-       <!-- Delete Column -->
-       <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-        <mat-cell *matCellDef="let employee">
-            <a [routerLink]="['/employees/', employee.employeeId]">Delete</a>
-        </mat-cell>
-      </ng-container>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button class="delete" (click)="delete(employee.EmployeeId)">Delete</button>
+      </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -54,4 +53,3 @@
   <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
-

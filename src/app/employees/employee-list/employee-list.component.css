@@ -35,3 +35,13 @@
     font-weight: 800;
     font-family: 'Montserrat', sans-serif;
   }
+
+  .delete {
+    background:none!important;
+    color:inherit;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;
+    color:#e74c3c
+  }
