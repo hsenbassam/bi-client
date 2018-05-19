@@ -14,16 +14,18 @@ export const routes: Routes = [
         component: EmployeesComponent,
         children: [
             {
-                path: 'add',
-                component: EmployeeFormComponent
-            },
-            {
-                path: 'edit',
-                component: EmployeeFormComponent
+                path: '',
+                redirectTo: 'list',
+                pathMatch: 'full'
             },
             {
                 path: 'list',
                 component: EmployeeListComponent
+            },
+            {   path: ':id', component: EmployeeFormComponent },
+            {
+                path: 'add',
+                component: EmployeeFormComponent
             }
         ]
     },
