@@ -8,6 +8,7 @@ import { Validators, FormBuilder, FormArray, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { EmployeeService } from '../../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -24,6 +25,7 @@ export class EmployeeFormComponent implements OnInit {
     private fb: FormBuilder,
     private datePipe: DatePipe,
     private _router: Router,
+    private toastr: ToastrService,
     private employeeService: EmployeeService,
     private benefitService: BenefitService,
     private employeeBenefitService: EmployeeBenefitService) {
@@ -59,7 +61,6 @@ export class EmployeeFormComponent implements OnInit {
 
 
   ngOnInit() {
-
   }
   get name() {
     return this.form.get('info.name');
@@ -73,23 +74,24 @@ export class EmployeeFormComponent implements OnInit {
   save() {
     this.form.value.info.dob = this.datePipe.transform(this.form.value.info.dob, 'yyyy-MM-dd');
     if (this.form.valid) {
+      const employee: Employee = this.form.value.info;
+      const benefitsFormArray = this.form.value.benefits.data;
       if (this.url.includes('/add')) {
-        const employee: Employee = this.form.value.info;
-        const benefitsFormArray = this.form.value.benefits.data;
-        this.employeeService.post(employee)
-          .subscribe(response => {
-            console.log(response);
-            benefitsFormArray.forEach(benefitId => {
-              const employeeBenefit: EmployeeBenefit = new EmployeeBenefit(response.EmployeeId, benefitId);
-              this.employeeBenefitService.post(employeeBenefit)
-                .subscribe(res => {
-                  console.log(res);
-                });
-            });
-          });
+        this.addEmployee(employee, benefitsFormArray);
       }
     } else {
       console.log('The Form is Invalid');
     }
+  }
+
+  private addEmployee(employee, benefits) {
+    this.employeeService.post(employee)
+      .subscribe(response => {
+        benefits.forEach(benefitId => {
+          const employeeBenefit: EmployeeBenefit = new EmployeeBenefit(response.EmployeeId, benefitId);
+          this.employeeBenefitService.post(employeeBenefit).subscribe();
+        });
+        this.toastr.success('Success', 'You Just Add ' + response.Name);
+      });
   }
 }
