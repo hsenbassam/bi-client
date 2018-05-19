@@ -51,8 +51,8 @@
             <div class="control-group">
 
               <div class="form-check" *ngFor="let item of checks">
-                <input type="checkbox" class="form-check-input" value="item.value" [id]="item.value" (change)="onChange(item.value, $event.target.checked)">
-                <label class="form-check-label" [for]="item.value">{{item.benefit}}</label>
+                <input type="checkbox" class="form-check-input" value="item.BenefitId" [id]="item.BenefitId" (change)="onChange(item.BenefitId, $event.target.checked)">
+                <label class="form-check-label" [for]="item.BenefitId">{{item.Name}}</label>
               </div>
             </div>
           </fieldset>

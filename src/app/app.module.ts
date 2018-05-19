@@ -1,3 +1,5 @@
+import { EmployeeBenefitService } from './_services/employee-benefit.service';
+import { BenefitService } from './_services/benefit.service';
 import { EmployeeService } from './_services/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +31,11 @@ import { HttpModule } from '@angular/http';
     RouterModule.forRoot(routes),
     CollapseModule.forRoot()
   ],
-  providers: [EmployeeService],
+  providers: [
+    EmployeeService,
+    BenefitService,
+    EmployeeBenefitService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

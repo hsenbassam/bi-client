@@ -1,3 +1,8 @@
+import { EmployeeBenefitService } from './../../_services/employee-benefit.service';
+import { EmployeeBenefit } from './../../_models/employeeBenefit';
+import { Employee } from './../../_models/employee';
+import { Benefit } from './../../_models/benefit';
+import { BenefitService } from './../../_services/benefit.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +16,7 @@ import { EmployeeService } from '../../_services/employee.service';
 export class EmployeeFormComponent implements OnInit {
 
   form; url;
+  checks: Benefit[];
   maxDate = new Date();
 
   constructor(
@@ -18,8 +24,15 @@ export class EmployeeFormComponent implements OnInit {
     private fb: FormBuilder,
     private datePipe: DatePipe,
     private _router: Router,
-    private employeeService: EmployeeService) {
+    private employeeService: EmployeeService,
+    private benefitService: BenefitService,
+    private employeeBenefitService: EmployeeBenefitService) {
+
     this.url = _router.url;
+
+    this.benefitService.getAll().subscribe(response => this.checks = response);
+
+
     this.form = fb.group({
       info: fb.group({
         name: ['', Validators.required],
@@ -31,13 +44,7 @@ export class EmployeeFormComponent implements OnInit {
       })
     });
   }
-  public checks = [
-    { benefit: 'Phone Allowance', value: 'phone' },
-    { benefit: 'Car Allowance', value: 'car' },
-    { benefit: 'Meal Allowance', value: 'meal' },
-    { benefit: '17 Months', value: 'month' },
-    { benefit: '4 Two-ways Tickets', value: 'tickets' }
-  ];
+
 
   onChange(benefit: string, isChecked: boolean) {
     const benefitsFormArray = <FormArray>this.form.controls.benefits.controls.data;
@@ -52,6 +59,7 @@ export class EmployeeFormComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
   get name() {
     return this.form.get('info.name');
@@ -66,7 +74,19 @@ export class EmployeeFormComponent implements OnInit {
     this.form.value.info.dob = this.datePipe.transform(this.form.value.info.dob, 'yyyy-MM-dd');
     if (this.form.valid) {
       if (this.url.includes('/add')) {
-        console.log(this.form.value);
+        const employee: Employee = this.form.value.info;
+        const benefitsFormArray = this.form.value.benefits.data;
+        this.employeeService.post(employee)
+          .subscribe(response => {
+            console.log(response);
+            benefitsFormArray.forEach(benefitId => {
+              const employeeBenefit: EmployeeBenefit = new EmployeeBenefit(response.EmployeeId, benefitId);
+              this.employeeBenefitService.post(employeeBenefit)
+                .subscribe(res => {
+                  console.log(res);
+                });
+            });
+          });
       }
     } else {
       console.log('The Form is Invalid');
