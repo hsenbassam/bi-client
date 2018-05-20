@@ -1,8 +1,8 @@
 import { Employee } from './../../_models/employee';
 import { EmployeeService } from './../../_services/employee.service';
+import { MatTableDataSource, MatPaginator, MatSort, MatSortable } from '@angular/material';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { MatTableDataSource, MatPaginator, MatSort, MatSortable } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -33,9 +33,9 @@ export class EmployeeListComponent implements OnInit {
 
     this.employeeService.getAll().subscribe(employees => {
       this.employees = employees;
+      this.dataSource = new MatTableDataSource(this.employees);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.dataSource = new MatTableDataSource(this.employees);
     });
 
     this.sort.sort(<MatSortable>{ id: 'name', start: 'asc' });

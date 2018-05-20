@@ -27,7 +27,7 @@
     <!-- Salary Column -->
     <ng-container matColumnDef="salary">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Salary </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.Salary | currency:'USD':symbol}} </mat-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.Salary | currency:'USD':'symbol'}} </mat-cell>
     </ng-container>
 
     <!-- Edit Column -->
@@ -52,4 +52,8 @@
 
   <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
+</div>
+<div class="row float-right buttons">
+  <button type="button" class="btn btn-info homebtn" routerLink="/">Home</button>
+  <button type="button" class="btn btn-success savebtn" routerLink="/employees/add" >Add</button>
 </div>

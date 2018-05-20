@@ -22,11 +22,11 @@ export const routes: Routes = [
                 path: 'list',
                 component: EmployeeListComponent
             },
-            {   path: ':id', component: EmployeeFormComponent },
             {
                 path: 'add',
                 component: EmployeeFormComponent
-            }
+            },
+            {   path: ':id', component: EmployeeFormComponent }
         ]
     },
 

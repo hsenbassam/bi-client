@@ -20,8 +20,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Date Of Birth</span>
                 </div>
-                <input type="text" placeholder="Datepicker" class="form-control" formControlName="dob" bsDatepicker #dp="bsDatepicker"
-                  [maxDate]="maxDate" [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD'}">
+                <input type="text" placeholder="Datepicker" class="form-control" formControlName="dob" bsDatepicker #dp="bsDatepicker" [maxDate]="maxDate"
+                  [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD'}">
               </div>
               <div class="col-md-4">
                 <button class="btn btn-default" type="button" (click)="dp.toggle()">
@@ -49,9 +49,8 @@
           <fieldset class="scheduler-border">
             <legend class="scheduler-border">Benefits</legend>
             <div class="control-group">
-
               <div class="form-check" *ngFor="let item of checks">
-                <input type="checkbox" class="form-check-input" value="item.BenefitId" [id]="item.BenefitId" (change)="onChange(item.BenefitId, $event.target.checked)">
+                <input type="checkbox" [checked]="isInEmployeeBenefits(item.BenefitId)" class="form-check-input" value="item.BenefitId" [id]="item.BenefitId" (change)="onChange(item.BenefitId, $event.target.checked)">
                 <label class="form-check-label" [for]="item.BenefitId">{{item.Name}}</label>
               </div>
             </div>

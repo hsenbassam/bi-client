@@ -1,6 +1,8 @@
-export interface Employee {
-    employeeId: number;
-    name: string;
-    dob: Date;
-    salary: number;
+export class Employee {
+
+    constructor(
+        public employeeId: number,
+        public name: string,
+        public dob: Date,
+        public salary: number) { }
 }
