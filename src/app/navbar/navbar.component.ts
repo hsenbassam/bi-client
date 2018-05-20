@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   isCollapsed = true;
+  mockQuerySearch: string;
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit() {
+  }
+
+  mockSearch() {
+    this.toastr.show('Success', 'Mock Query Search: ' + this.mockQuerySearch);
   }
 
 }

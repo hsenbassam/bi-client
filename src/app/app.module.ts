@@ -18,6 +18,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { FooterComponent } from './footer/footer.component';
 import { CollapseModule } from 'ngx-bootstrap';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     HttpClientModule,
     LoadingBarHttpModule,
     BrowserAnimationsModule,

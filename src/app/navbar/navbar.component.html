@@ -13,8 +13,8 @@
         <a class="nav-link" routerLink="/employees" routerLinkActive="active" >Employees</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search">
-    </form>
+    <div class="form-inline my-2 my-md-0">
+      <input class="form-control"  [(ngModel)]="mockQuerySearch" type="text" (keyup.enter)="mockSearch()" placeholder="Search">
+    </div>
   </div>
 </nav>

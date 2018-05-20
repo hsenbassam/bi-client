@@ -145,18 +145,19 @@ export class EmployeeFormComponent implements OnInit {
       return;
     }
 
-
-    // Else : Insert Just the new benefit and Delete unchecked benefits
+    // Else : Insert Just the new benefits and Delete the unchecked benefits
     const addedBenefits = benefits.filter(function (n) { return !this.has(n); }, new Set(pastBenefits)); // +
     const removedBenefits = pastBenefits.filter(function (n) { return !this.has(n); }, new Set(benefits)); // -
 
     addedBenefits.forEach(benefit => {
+      console.log('Add new Benefit');
       this.employeeBenefitService.post(new EmployeeBenefit(this.id, benefit)).subscribe();
     });
     const removedEmployeeBenefits =
       this.employeeBenefits.filter(function (obj) { return this.has(obj.benefitId); }, new Set(removedBenefits));
 
     removedEmployeeBenefits.forEach(employeeBenefit => {
+      console.log('Remove a Benefit');
       this.employeeBenefitService.delete(employeeBenefit.employeeBenefitId).subscribe();
     });
 
