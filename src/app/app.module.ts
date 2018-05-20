@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
+import { LoadingBarHttpModule } from '@ngx-loading-bar/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -30,6 +31,7 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    LoadingBarHttpModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
