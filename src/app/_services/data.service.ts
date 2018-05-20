@@ -29,8 +29,8 @@ export class DataService {
             .map(response =>  response.json());
     }
 
-    update(resource) {
-        return this.http.put(this.url + '/' + resource.id, resource, this.options)
+    update(id, resource) {
+        return this.http.put(this.url + '/' + id, resource, this.options)
             .map(response =>  response.json());
     }
 
