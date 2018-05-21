@@ -78,12 +78,12 @@ export class EmployeeFormComponent implements OnInit {
   }
 
 
-  onChange(benefit: string, isChecked: boolean) {
+  onChange(benefitId: number, isChecked: boolean) {
     const benefitsFormArray = <FormArray>this.form.controls.benefits.controls.data;
     if (isChecked) {
-      benefitsFormArray.push(new FormControl(benefit));
+      benefitsFormArray.push(new FormControl(benefitId));
     } else {
-      const index = benefitsFormArray.controls.findIndex(x => x.value === benefit);
+      const index = benefitsFormArray.controls.findIndex(x => x.value === benefitId);
       benefitsFormArray.removeAt(index);
     }
   }
